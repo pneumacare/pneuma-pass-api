@@ -1,14 +1,34 @@
-import { initializeApp, credential } from "firebase-admin";
-import { readFile } from 'fs'
-import util from 'util';
-import { resolve } from "path"
-
-const readFilePromise = util.promisify(readFile);
-
-const initialize = async () => {
-    const serviceAccount = await readFilePromise(resolve("../../google-service-account.json"))
-    initializeApp({
-        credential: credential.cert(serviceAccount.toString()),
-        databaseURL: process.env.FIREBASE_DATABASE_URL
-    })
+import { Schema, model } from "mongoose"
+export interface SchemaInterface {
+    name: string;
+    address: string;
+    status: string;
+    updatedAt: Date;
+    createdAt: Date;
 }
+const organizationSchema = new Schema<SchemaInterface>({
+    name: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    updatedAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
+})
+
+export default model("Organizations", organizationSchema);
