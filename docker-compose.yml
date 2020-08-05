@@ -1,0 +1,9 @@
+version: "3.1"
+
+services: 
+    pass-api:
+        build: .
+        image: camelot7/pneumapass-api
+        ports: 
+            - "9000:9000"
+        env_file: .env
