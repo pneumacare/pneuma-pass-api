@@ -5,6 +5,8 @@ import userRoutes from "./app/routes/user";
 import firebaseApp from "./firebase";
 import mongoose from "mongoose";
 import { json, urlencoded } from "body-parser";
+import morgan from "morgan";
+import chalk from "chalk";
 
 config()
 
@@ -22,6 +24,14 @@ const app: express.Application = express();
 
 app.use(json())
 app.use(urlencoded({ extended: true }))
+app.use(morgan(function (tokens, req, res) {
+    return [
+        chalk.green.bold(tokens.method(req, res)),
+        chalk.red.bold(tokens.status(req, res)),
+        chalk.white(tokens.url(req, res)),
+        chalk.yellow(tokens['response-time'](req, res) + ' ms'),
+    ].join(' ');
+}));
 app.use('/organization', orgRoutes)
 app.use('/user', userRoutes)
 
