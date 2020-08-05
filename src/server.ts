@@ -36,7 +36,7 @@ app.use('/organization', orgRoutes)
 app.use('/user', userRoutes)
 
 app.get("/", function (req, res) {
-    res.send("Hello World!");
+    res.send("Pneuma API!");
 });
 
 app.listen(PORT, function () {
