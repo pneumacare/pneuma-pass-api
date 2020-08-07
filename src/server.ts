@@ -2,6 +2,7 @@ import express = require("express");
 import { config } from 'dotenv';
 import orgRoutes from "./app/routes/organization";
 import userRoutes from "./app/routes/user";
+import serviceRoutes from "./app/routes/services";
 import firebaseApp from "./firebase";
 import mongoose from "mongoose";
 import { json, urlencoded } from "body-parser";
@@ -35,6 +36,7 @@ app.use(morgan(function (tokens, req, res) {
 app.use('/organization', orgRoutes)
 app.use('/user', userRoutes)
 app.use('/admin', userRoutes)
+app.use('/service', serviceRoutes)
 
 app.get("/", function (req, res) {
     res.send("Pneuma API!");
