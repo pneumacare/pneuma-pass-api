@@ -1,21 +1,24 @@
 import { Request, Response } from "express";
-import User, { SchemaInterface } from "../models/user";
+import User from "../models/user";
+import firebaseApp from "../../firebase"
 
 class UserController {
 
     async create(req: Request, res: Response) {
         try {
-            const { firstname, lastname, email, phone, pass, status, uid, organization } = req.body;
+            const { firstname, lastname, email, phone, pneumapass, status, uid, organization } = req.body;
+            
             const userSchema = new User({
                 firstname,
                 lastname,
                 email,
                 phone,
-                pass,
+                pass: pneumapass,
                 uid,
                 organization,
                 status
             });
+
             const user = await userSchema.save();
             res.status(201).json(user);
         } catch (error) {
@@ -25,6 +28,9 @@ class UserController {
     }
     getOne(req: Request, res: Response) {
         res.json("Test")
+    }
+    removeUser(req: Request, res: Response) {
+
     }
 }
 

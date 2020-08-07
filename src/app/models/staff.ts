@@ -1,17 +1,10 @@
 import { Schema, model } from "mongoose"
+import { SchemaInterface } from "./user";
 
-export interface SchemaInterface {
-    firstname: string;
-    lastname: string;
-    email: string;
-    phone: string;
-    pass: string;
-    status: string;
-    uid: string;
-    updatedAt: Date;
-    createdAt: Date;
+export interface StaffInterface extends SchemaInterface {
+    organization: string;
 }
-const userSchema = new Schema<SchemaInterface>({
+const staffSchema = new Schema<StaffInterface>({
     firstname: {
         type: String,
         required: true
@@ -44,6 +37,10 @@ const userSchema = new Schema<SchemaInterface>({
         required: true,
         unique: true
     },
+    organization: {
+        type: String,
+        required: true
+    },
     updatedAt: {
         type: Date,
         required: true,
@@ -56,4 +53,4 @@ const userSchema = new Schema<SchemaInterface>({
     }
 })
 
-export default model("User", userSchema);
+export default model("Staff", staffSchema);

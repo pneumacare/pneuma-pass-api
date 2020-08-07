@@ -34,6 +34,7 @@ app.use(morgan(function (tokens, req, res) {
 }));
 app.use('/organization', orgRoutes)
 app.use('/user', userRoutes)
+app.use('/admin', userRoutes)
 
 app.get("/", function (req, res) {
     res.send("Pneuma API!");

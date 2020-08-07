@@ -7,12 +7,12 @@ export interface SchemaInterface {
     country: string;
     contactPhone: string;
     contactEmail: string;
-    referenceCode?: string;
-    status?: string;
+    referenceCode: string;
+    status: string;
     updatedAt: Date;
     createdAt: Date;
 }
-const organizationSchema = new Schema<SchemaInterface>({
+const clinicSchema = new Schema<SchemaInterface>({
     name: {
         type: String,
         required: true
@@ -43,13 +43,16 @@ const organizationSchema = new Schema<SchemaInterface>({
     },
     referenceCode: {
         type: String,
+        required: true
     },
     status: {
         type: String,
+        required: true
     },
-    clinics: [{
+    services: [{
         type: Schema.Types.ObjectId,
-        ref: "Clinic"
+        ref: "Service",
+        required: true
     }],
     updatedAt: {
         type: Date,
@@ -63,4 +66,4 @@ const organizationSchema = new Schema<SchemaInterface>({
     }
 })
 
-export default model("Organization", organizationSchema);
+export default model("Clinic", clinicSchema);

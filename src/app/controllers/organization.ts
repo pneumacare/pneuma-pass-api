@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Organization, { SchemaInterface } from "../models/organization";
+import Organization from "../models/organization";
 
 class OrganizationController {
 
