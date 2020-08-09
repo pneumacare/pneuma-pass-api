@@ -12,7 +12,7 @@ import cors from "cors";
 
 config()
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 mongoose.connect(process.env.MONGODB_CONNECTION_URL!, { useNewUrlParser: true, useUnifiedTopology: true })
 
