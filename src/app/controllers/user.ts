@@ -42,8 +42,6 @@ class UserController {
 
             const idTokenResult = await firebaseApp.auth().verifyIdToken(idToken);
             await firebaseApp.auth().setCustomUserClaims(idTokenResult.uid, { orgId: organization, cacCode, role: "admin" })
-            const user = firebaseApp.auth().getUser(idTokenResult.uid)
-            console.log((await user).toJSON());
             const staffSchema = new Staff({
                 email,
                 cacCode,
