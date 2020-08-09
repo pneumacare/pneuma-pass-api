@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Organization from "../models/organization";
+import organization from "../models/organization";
 
 class OrganizationController {
 
@@ -37,6 +38,10 @@ class OrganizationController {
     }
     getOne(req: Request, res: Response) {
         res.json("Genau")
+    }
+    async getAll(req: Request, res: Response) {
+        const clinics = await organization.find({});
+        res.status(200).json(clinics)
     }
 }
 
