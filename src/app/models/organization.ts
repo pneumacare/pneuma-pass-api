@@ -1,7 +1,9 @@
 import { Schema, model } from "mongoose"
 export interface SchemaInterface {
     name: string;
+    description: string;
     address: string;
+    cacCode: string;
     city: string;
     state: string;
     country: string;
@@ -17,6 +19,8 @@ const organizationSchema = new Schema<SchemaInterface>({
         type: String,
         required: true
     },
+    description: String,
+    cacCode: String,
     address: {
         type: String,
         required: true

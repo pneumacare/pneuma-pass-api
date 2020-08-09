@@ -7,48 +7,40 @@ export interface StaffInterface extends SchemaInterface {
 const staffSchema = new Schema<StaffInterface>({
     firstname: {
         type: String,
-        required: true
     },
     lastname: {
         type: String,
-        required: true
     },
     email: {
         type: String,
-        required: true,
         unique: true
     },
     phone: {
         type: String,
-        required: true,
         unique: true
     },
-    pass: {
-        type: String,
-        required: true,
-        unique: true
-    },
+
     status: {
         type: String,
-        required: true
     },
     uid: {
         type: String,
         required: true,
         unique: true
     },
+    cacCode: {
+        type: String,
+        unique: true
+    },
     organization: {
         type: String,
-        required: true
     },
     updatedAt: {
         type: Date,
-        required: true,
         default: Date.now
     },
     createdAt: {
         type: Date,
-        required: true,
         default: Date.now
     }
 })

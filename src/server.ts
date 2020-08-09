@@ -1,13 +1,14 @@
 import express = require("express");
 import { config } from 'dotenv';
 import orgRoutes from "./app/routes/organization";
-import userRoutes from "./app/routes/user";
 import serviceRoutes from "./app/routes/services";
+import userRoutes from "./app/routes/user";
 import firebaseApp from "./firebase";
 import mongoose from "mongoose";
 import { json, urlencoded } from "body-parser";
 import morgan from "morgan";
 import chalk from "chalk";
+import cors from "cors";
 
 config()
 
@@ -22,7 +23,7 @@ db.once('open', () => console.log('connected to database'))
 
 
 const app: express.Application = express();
-
+app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan(function (tokens, req, res) {
@@ -33,9 +34,8 @@ app.use(morgan(function (tokens, req, res) {
         chalk.yellow(tokens['response-time'](req, res) + ' ms'),
     ].join(' ');
 }));
-app.use('/organization', orgRoutes)
+app.use('/clinic', orgRoutes)
 app.use('/user', userRoutes)
-app.use('/admin', userRoutes)
 app.use('/service', serviceRoutes)
 
 app.get("/", function (req, res) {
