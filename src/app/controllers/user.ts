@@ -38,13 +38,12 @@ class UserController {
 
             if (!idToken) return res.status(400).json({ message: "No Id Token was found" });
 
-            const { email, organization, cacCode } = req.body;
+            const { email, organization } = req.body;
 
             const idTokenResult = await firebaseApp.auth().verifyIdToken(idToken);
-            await firebaseApp.auth().setCustomUserClaims(idTokenResult.uid, { orgId: organization, cacCode, role: "admin" })
+            await firebaseApp.auth().setCustomUserClaims(idTokenResult.uid, { orgId: organization, role: "admin" })
             const staffSchema = new Staff({
                 email,
-                cacCode,
                 uid: idTokenResult.uid,
                 organization,
             });
@@ -60,8 +59,8 @@ class UserController {
 
     async getStaff(req: Request, res: Response) {
         try {
-            const { email, cacCode } = req.body;
-            const userFound = await Staff.find({ email: email, cacCode: cacCode })
+            const { email } = req.body;
+            const userFound = await Staff.find({ email: email})
 
             if ((Array.isArray(userFound) && userFound.length === 0) || !userFound) {
                 return res.status(404).json("User not found")

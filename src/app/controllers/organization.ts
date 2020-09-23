@@ -14,8 +14,8 @@ class OrganizationController {
                 state,
                 country,
                 contactPhone,
-                contactEmail,
-                referenceCode } = req.body;
+                contactEmail
+                 } = req.body;
 
             const orgSchema = new Organization({
                 name,
@@ -27,7 +27,6 @@ class OrganizationController {
                 country,
                 contactPhone,
                 contactEmail,
-                referenceCode,
             });
             const organization = await orgSchema.save();
             res.status(201).json(organization);

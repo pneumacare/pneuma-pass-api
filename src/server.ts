@@ -34,7 +34,7 @@ app.use(morgan(function (tokens, req, res) {
         chalk.yellow(tokens['response-time'](req, res) + ' ms'),
     ].join(' ');
 }));
-app.use('/clinic', orgRoutes)
+app.use('/organization', orgRoutes)
 app.use('/user', userRoutes)
 app.use('/service', serviceRoutes)
 

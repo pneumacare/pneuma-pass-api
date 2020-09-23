@@ -28,10 +28,6 @@ const staffSchema = new Schema<StaffInterface>({
         required: true,
         unique: true
     },
-    cacCode: {
-        type: String,
-        unique: true
-    },
     organization: {
         type: String,
     },

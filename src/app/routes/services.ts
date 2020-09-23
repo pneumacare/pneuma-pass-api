@@ -6,7 +6,7 @@ const serviceController = new ServiceController();
 const router = Router();
 
 router.post("/", serviceController.create)
-router.get("/", serviceController.getOne)
+router.get("/:id", serviceController.getOne)
 router.get("/", serviceController.getAll)
 
 

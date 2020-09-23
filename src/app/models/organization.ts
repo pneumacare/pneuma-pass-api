@@ -45,16 +45,9 @@ const organizationSchema = new Schema<SchemaInterface>({
         type: String,
         required: true
     },
-    referenceCode: {
-        type: String,
-    },
     status: {
         type: String,
     },
-    clinics: [{
-        type: Schema.Types.ObjectId,
-        ref: "Clinic"
-    }],
     updatedAt: {
         type: Date,
         required: true,
