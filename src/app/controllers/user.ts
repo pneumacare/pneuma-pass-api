@@ -60,7 +60,7 @@ class UserController {
     async getStaff(req: Request, res: Response) {
         try {
             const { email } = req.body;
-            const userFound = await Staff.find({ email: email})
+            const userFound = await Staff.find({ email: email })
 
             if ((Array.isArray(userFound) && userFound.length === 0) || !userFound) {
                 return res.status(404).json("User not found")
@@ -73,8 +73,20 @@ class UserController {
         }
     }
 
-    getOne(req: Request, res: Response) {
-        res.json("Test")
+    async getOneByPass(req: Request, res: Response) {
+        try {
+            const { pass } = req.body;
+            const userFound = await User.find({ pass: pass })
+
+            if ((Array.isArray(userFound) && userFound.length === 0) || !userFound) {
+                return res.status(404).json("User not found")
+            }
+
+            return res.status(200).json(userFound);
+        }
+        catch (error) {
+            return res.status(400).json(error.message)
+        }
     }
     removeUser(req: Request, res: Response) {
 
